@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
-class Mage
+#include "Adventurer.h"
+
+class Mage : public Adventurer
 {
 private:
 	std::string _name;
@@ -9,6 +11,6 @@ public:
 	~Mage();
 
 	std::string GetName() const { return _name; }
-	std::string Attack() { return _name + " casts magic missle at the darkness!"; }	
+	std::string Attack() { return _name + " casts magic missle at the darkness!"; }
 };
 

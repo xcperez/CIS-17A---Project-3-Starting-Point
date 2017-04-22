@@ -8,7 +8,7 @@ void DisplayGuildInfo(const shared_ptr<Guild> guild);
 void AddAdventurer(const shared_ptr<Guild> guild);
 void Attack(const shared_ptr<Guild> guild);
 
-int main() 
+int main()
 {
 	cout << "Welcome to the adventure guild simulator." << endl << "Enter a name for your guild: ";
 	string name;
@@ -16,7 +16,7 @@ int main()
 	auto guild = make_shared<Guild>(name);
 
 	int choice = -1;
-	while (choice != 0) 
+	while (choice != 0)
 	{
 		system("cls");
 		cout << "Now Managing " << guild->GetName() << endl << "****************************" << endl;
@@ -25,7 +25,7 @@ int main()
 		cout << "3) Attack!" << endl;
 		cin >> choice;
 
-		switch (choice) 
+		switch (choice)
 		{
 		case 1: DisplayGuildInfo(guild); break;
 		case 2: AddAdventurer(guild); break;
@@ -43,7 +43,7 @@ void DisplayGuildInfo(const shared_ptr<Guild> guild)
 	system("pause");
 }
 
-void AddAdventurer(const shared_ptr<Guild> guild) 
+void AddAdventurer(const shared_ptr<Guild> guild)
 {
 	system("cls");
 
@@ -63,10 +63,34 @@ void AddAdventurer(const shared_ptr<Guild> guild)
 	cin >> choice;
 	switch (choice)
 	{
-	case 1: guild->AddMage(name); break;
-	case 2: guild->AddRanger(name); break;
-	case 3: guild->AddPaladin(name); break;	
-	case 4: guild->AddWarrior(name); break;
+	case 1:
+	{
+		auto advPtr = make_shared<Mage>(name);
+		guild->addAdventurer(advPtr);
+		break;
+	}
+	case 2:
+	{
+		auto advPtr = make_shared<Ranger>(name);
+		guild->addAdventurer(advPtr);
+
+		break;
+	}
+	case 3:
+	{
+
+		auto advPtr = make_shared<Paladin>(name);
+		guild->addAdventurer(advPtr);
+		break;
+
+	}
+	case 4:
+	{
+
+		auto advPtr = make_shared<Warrior>(name);
+		guild->addAdventurer(advPtr);
+		break;
+	}
 	default: cout << "Invalid choice!"; break;
 	}
 	system("pause");
@@ -95,5 +119,5 @@ void Attack(const shared_ptr<Guild> guild)
 	default: cout << "You run away like a coward" << endl; break;
 	}
 	system("pause");
-	
+
 }
